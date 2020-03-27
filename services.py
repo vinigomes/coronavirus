@@ -17,7 +17,6 @@ def show_confirmed_coronavirus_cases_in_brazil(covid):
     # Convert again de date field to String to be present in scatter_geo
     brazil['Date'] = brazil['Date'].apply(lambda x: x.strftime('%Y-%m-%d'))
     # Create the graphic
-    tooltip = ["Country_Region", "Volvo", "BMW"]
     fig = px.scatter_geo(brazil,
                          locations="Country_Region",
                          locationmode="country names",

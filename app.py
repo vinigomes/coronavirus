@@ -12,13 +12,6 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 # Download dataset when start the application
 covid = pd.read_csv('https://query.data.world/s/oma46o2n6g7odze4j6ainduilu7liq')
-covid_brazil = copy.copy(covid)
-covid_world = copy.copy(covid)
-
-
-# Cache fig
-fig_brazil = services.show_confirmed_coronavirus_cases_in_brazil(covid_brazil)
-fig_world = services.show_confirmed_coronavirus_cases_in_world(covid_world)
 
 
 @app.route('/')
@@ -28,12 +21,18 @@ def hello_world():
 
 @app.route('/brazil', methods=['GET'])
 def brazil():
-    return fig_brazil.show()
+    covid_brazil = copy.copy(covid)
+    fig_brazil = services.show_confirmed_coronavirus_cases_in_brazil(covid_brazil)
+    fig_brazil.show()
+    return render_template('index.html')
 
 
 @app.route('/world', methods=['GET'])
 def world():
-    return fig_world.show()
+    covid_world = copy.copy(covid)
+    fig_world = services.show_confirmed_coronavirus_cases_in_world(covid_world)
+    fig_world.show()
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
