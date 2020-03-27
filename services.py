@@ -15,7 +15,7 @@ def show_confirmed_coronavirus_cases_in_brazil(covid):
     # Sort to present in a timeline view
     brazil = brazil.sort_values(by='Date')
     # Convert again de date field to String to be present in scatter_geo
-    brazil['Date'] = brazil['Date'].apply(lambda x: x.strftime('%Y-%m-%d'))
+    brazil['Date'] = brazil['Date'].apply(lambda x: x.strftime('%d/%m/%Y'))
     # Create the graphic
     fig = px.scatter_geo(brazil,
                          locations="Country_Region",
@@ -38,7 +38,7 @@ def show_confirmed_coronavirus_cases_in_world(covid):
     covid['Date'] = pd.to_datetime(covid.Date)
     covid = covid.sort_values(by='Date')
     # Convert again de date field to String to be present in scatter_geo
-    covid['Date'] = covid['Date'].apply(lambda x: x.strftime('%Y-%m-%d'))
+    covid['Date'] = covid['Date'].apply(lambda x: x.strftime('%d/%m/%Y'))
     # Create the graphic
     fig = px.scatter_geo(covid,
                          locations="Country_Region",
